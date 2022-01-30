@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Profile;
+use App\Models\User;
 class ProfileController extends Controller
 {
     /**
@@ -13,7 +15,20 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+$user=Auth::user();
+$id=Auth::id();
+$profile=Profile::create([
+
+    "name"=>"taha",
+    "gender"=>"man",
+    "bio"=>"real man",
+    "url"=>'https://www.facebook.com/profile.php',
+
+
+
+]);
+
+     return view('users.profile')->with('user',$user);
     }
 
     /**
@@ -34,7 +49,15 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $this->validate($request, [
+        "url"=>"required",
+        "name"=>"required",
+        "gender"=>"required",
+        "bio"=>"required",
+       ]);
+       $user=Auth::user();
+       $id=Auth::id();
+    return redirect()-> route('users.profile')->with('user',$user);
     }
 
     /**

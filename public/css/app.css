@@ -1,0 +1,11 @@
+nav {
+  padding: 0;
+}
+nav ul {
+  color: black;
+}
+
+body {
+  background-color: aqua;
+  max-height: 100px;
+}
